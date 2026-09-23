@@ -34,7 +34,7 @@
     color: var(--ink);
     display: flex;
     justify-content: center;
-    padding: 48px 18px 56px;
+    padding: 64px 18px 56px;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -48,30 +48,6 @@
     outline: 2.5px solid var(--focus);
     outline-offset: 3px;
     border-radius: 4px;
-  }
-
-  /* ---------- barcode strip ---------- */
-  .barcode {
-    height: 22px;
-    margin-bottom: 22px;
-    background-image: repeating-linear-gradient(
-      90deg,
-      var(--ink) 0px, var(--ink) 2px,
-      transparent 2px, transparent 5px,
-      var(--ink) 5px, var(--ink) 6px,
-      transparent 6px, transparent 10px,
-      var(--ink) 10px, var(--ink) 13px,
-      transparent 13px, transparent 15px,
-      var(--ink) 15px, var(--ink) 16px,
-      transparent 16px, transparent 21px,
-      var(--ink) 21px, var(--ink) 24px,
-      transparent 24px, transparent 26px,
-      var(--ink) 26px, var(--ink) 27px,
-      transparent 27px, transparent 32px
-    );
-    background-repeat: repeat-x;
-    background-size: 32px 100%;
-    opacity: .85;
   }
 
   /* ---------- header ---------- */
@@ -243,14 +219,11 @@
     .row:hover { background: #16202b; }
     .row:hover .tag { color: #0f151b; }
     .row:hover .tag .rua { color: #103048; }
-    .barcode { opacity: .7; }
   }
 </style>
 </head>
 <body>
 <main>
-  <div class="barcode" aria-hidden="true"></div>
-
   <p class="eyebrow">Mapa de sistemas</p>
   <h1>Humana Alimentar</h1>
   <p class="lede">Endereço de cada sistema interno da operação — escolha uma posição para entrar.</p>
