@@ -4,226 +4,315 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Humana Alimentar — Sistemas</title>
-<meta name="description" content="Acesso rápido aos sistemas internos da Humana Alimentar.">
+<meta name="description" content="Mapa de acesso aos sistemas internos da Humana Alimentar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Stardos+Stencil:wght@700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d1410;
-    --bg-glow: #12241a;
-    --surface: #16201a;
-    --surface-hover: #1c2a22;
-    --border: #263329;
-    --text: #eef3ee;
-    --muted: #92a396;
-    --accent: #3fae72;
-    --accent-soft: #1f3d2c;
-    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
+    --paper: #fafbfd;
+    --card: #ffffff;
+    --ink: #14212e;
+    --ink-soft: #5b6b7c;
+    --ink-faint: #8593a3;
+    --line: #e3e9f1;
+    --line-strong: #ccd6e2;
+    --brand-blue: #0056a3;
+    --brand-blue-deep: #003567;
+    --brand-green: #2f6f4e;
+    --focus: #0056a3;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { -webkit-text-size-adjust: 100%; }
+
   body {
     min-height: 100vh;
     font-family: 'DM Sans', system-ui, sans-serif;
-    background:
-      radial-gradient(circle at 50% -10%, var(--bg-glow) 0%, transparent 55%),
-      var(--bg);
-    color: var(--text);
+    background: var(--paper);
+    color: var(--ink);
     display: flex;
     justify-content: center;
-    padding: 56px 20px 40px;
+    padding: 48px 18px 56px;
     -webkit-font-smoothing: antialiased;
   }
 
   main {
     width: 100%;
-    max-width: 440px;
+    max-width: 460px;
   }
 
-  .brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 40px;
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible {
+    outline: 2.5px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
-  .mark {
-    width: 64px;
-    height: 64px;
-    border-radius: 18px;
-    background: linear-gradient(160deg, var(--accent), #276b47);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'DM Mono', monospace;
+  /* ---------- barcode strip ---------- */
+  .barcode {
+    height: 22px;
+    margin-bottom: 22px;
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--ink) 0px, var(--ink) 2px,
+      transparent 2px, transparent 5px,
+      var(--ink) 5px, var(--ink) 6px,
+      transparent 6px, transparent 10px,
+      var(--ink) 10px, var(--ink) 13px,
+      transparent 13px, transparent 15px,
+      var(--ink) 15px, var(--ink) 16px,
+      transparent 16px, transparent 21px,
+      var(--ink) 21px, var(--ink) 24px,
+      transparent 24px, transparent 26px,
+      var(--ink) 26px, var(--ink) 27px,
+      transparent 27px, transparent 32px
+    );
+    background-repeat: repeat-x;
+    background-size: 32px 100%;
+    opacity: .85;
+  }
+
+  /* ---------- header ---------- */
+  .eyebrow {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 11.5px;
     font-weight: 500;
-    font-size: 26px;
-    color: #06150c;
-    box-shadow: var(--shadow);
-    margin-bottom: 18px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--brand-blue);
   }
 
   h1 {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -.01em;
+    font-family: 'Stardos Stencil', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(30px, 8vw, 38px);
+    line-height: 1.05;
+    letter-spacing: .01em;
+    margin: 8px 0 10px;
+    color: var(--ink);
   }
 
-  .brand p {
-    color: var(--muted);
-    font-size: 14px;
-    margin-top: 6px;
+  .lede {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.5;
+    max-width: 34ch;
+    margin-bottom: 30px;
   }
 
-  .links {
+  /* ---------- manifest list ---------- */
+  .manifest {
+    border-top: 2px solid var(--ink);
+  }
+
+  .tear {
+    height: 1px;
+    background-image: linear-gradient(to right, var(--line-strong) 50%, transparent 0);
+    background-size: 9px 1px;
+    background-repeat: repeat-x;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 4px;
+    text-decoration: none;
+    transition: transform .15s cubic-bezier(.4,0,.2,1), background-color .15s;
+    border-radius: 10px;
+  }
+
+  .row:hover { background: #f2f6fa; }
+  .row:active { transform: scale(.985); }
+
+  .tag {
+    flex: none;
+    position: relative;
+    width: 66px;
+    height: 52px;
+    border: 1.5px solid var(--ink);
+    border-radius: 5px;
+    background: var(--card);
     display: flex;
     flex-direction: column;
-    gap: 12px;
-  }
-
-  .link-card {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 16px 18px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    text-decoration: none;
-    color: var(--text);
-    transition: transform .16s cubic-bezier(.4,0,.2,1), background .16s, border-color .16s;
-  }
-
-  .link-card:hover {
-    background: var(--surface-hover);
-    border-color: var(--accent);
-  }
-
-  .link-card:active {
-    transform: scale(.98);
-  }
-
-  .icon {
-    flex: none;
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: var(--accent-soft);
-    display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-family: 'DM Mono', ui-monospace, monospace;
+    line-height: 1.35;
+    transform: rotate(-1.2deg);
+    transition: background-color .15s, color .15s;
   }
 
-  .info {
-    flex: 1;
-    min-width: 0;
+  .tag::after {
+    content: "";
+    position: absolute;
+    right: -1.5px;
+    top: 50%;
+    width: 9px;
+    height: 9px;
+    background: var(--paper);
+    border-left: 1.5px solid var(--ink);
+    border-radius: 50%;
+    transform: translate(50%, -50%);
   }
+
+  .row:hover .tag {
+    background: var(--brand-blue);
+    border-color: var(--brand-blue);
+    color: #fff;
+  }
+  .row:hover .tag::after { border-color: var(--brand-blue); }
+
+  .tag .rua {
+    font-size: 9.5px;
+    letter-spacing: .06em;
+    color: var(--ink-faint);
+  }
+  .row:hover .tag .rua { color: #dce8f4; }
+
+  .tag .pos {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .row:hover .tag .pos { color: #fff; }
+
+  .info { flex: 1; min-width: 0; }
 
   .info .name {
     font-weight: 600;
-    font-size: 15px;
+    font-size: 16px;
+    letter-spacing: -.005em;
   }
 
   .info .desc {
-    color: var(--muted);
-    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-size: 13px;
     margin-top: 2px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .arrow {
     flex: none;
-    color: var(--muted);
-    font-size: 18px;
+    font-family: 'DM Mono', ui-monospace, monospace;
+    color: var(--ink-faint);
+    font-size: 16px;
+    transition: transform .15s, color .15s;
+  }
+  .row:hover .arrow { color: var(--brand-blue); transform: translateX(3px); }
+
+  .manifest-end {
+    border-top: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    margin-top: 2px;
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
   }
 
   footer {
     text-align: center;
-    margin-top: 40px;
-    color: var(--muted);
-    font-size: 12px;
-    font-family: 'DM Mono', monospace;
+    margin-top: 26px;
+    color: var(--ink-faint);
+    font-size: 11.5px;
+    font-family: 'DM Mono', ui-monospace, monospace;
   }
 
-  @media (prefers-color-scheme: light) {
+  @media (prefers-reduced-motion: reduce) {
+    .row, .tag, .arrow { transition: none; }
+  }
+
+  @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #f3f6f3;
-      --bg-glow: #e6f0e8;
-      --surface: #ffffff;
-      --surface-hover: #f5faf6;
-      --border: #dfe7e1;
-      --text: #10231a;
-      --muted: #5f7268;
-      --accent: #2d6a4f;
-      --accent-soft: #e6f5eb;
-      --shadow: 0 1px 2px rgba(15,35,25,.06), 0 12px 32px rgba(15,35,25,.08);
+      --paper: #0f151b;
+      --card: #161e26;
+      --ink: #eef2f6;
+      --ink-soft: #9fb0be;
+      --ink-faint: #6d7f8e;
+      --line: #263340;
+      --line-strong: #33455470;
+      --brand-blue: #4f9bde;
+      --brand-blue-deep: #a9d0f2;
+      --focus: #4f9bde;
     }
-    .mark { color: #f3fff6; }
+    .row:hover { background: #16202b; }
+    .row:hover .tag { color: #0f151b; }
+    .row:hover .tag .rua { color: #103048; }
+    .barcode { opacity: .7; }
   }
 </style>
 </head>
 <body>
 <main>
-  <div class="brand">
-    <div class="mark">H</div>
-    <h1>Humana Alimentar</h1>
-    <p>Sistemas internos</p>
-  </div>
+  <div class="barcode" aria-hidden="true"></div>
 
-  <nav class="links">
-    <a class="link-card" href="https://controlehumana.github.io/humfrete/" target="_blank" rel="noopener">
-      <span class="icon">🚚</span>
+  <p class="eyebrow">Mapa de sistemas</p>
+  <h1>Humana Alimentar</h1>
+  <p class="lede">Endereço de cada sistema interno da operação — escolha uma posição para entrar.</p>
+
+  <nav class="manifest" aria-label="Sistemas internos">
+
+    <a class="row" href="https://controlehumana.github.io/humfrete/" target="_blank" rel="noopener">
+      <span class="tag"><span class="rua">RUA F</span><span class="pos">POS 01</span></span>
       <span class="info">
         <span class="name">Frete</span>
-        <span class="desc">Dashboard de fretes e CT-e</span>
+        <span class="desc">Fretes e CT-e</span>
       </span>
       <span class="arrow">→</span>
     </a>
+    <div class="tear" aria-hidden="true"></div>
 
-    <a class="link-card" href="https://humana-task.vercel.app" target="_blank" rel="noopener">
-      <span class="icon">✅</span>
+    <a class="row" href="https://humana-task.vercel.app" target="_blank" rel="noopener">
+      <span class="tag"><span class="rua">RUA T</span><span class="pos">POS 01</span></span>
       <span class="info">
         <span class="name">Humana Task</span>
-        <span class="desc">Gestão de processos e tarefas</span>
+        <span class="desc">Processos e tarefas</span>
       </span>
       <span class="arrow">→</span>
     </a>
+    <div class="tear" aria-hidden="true"></div>
 
-    <a class="link-card" href="https://painel-tv-humana.vercel.app" target="_blank" rel="noopener">
-      <span class="icon">📺</span>
+    <a class="row" href="https://painel-tv-humana.vercel.app" target="_blank" rel="noopener">
+      <span class="tag"><span class="rua">RUA V</span><span class="pos">POS 01</span></span>
       <span class="info">
         <span class="name">Painel TV</span>
-        <span class="desc">Digital signage</span>
+        <span class="desc">Sinalização digital</span>
       </span>
       <span class="arrow">→</span>
     </a>
+    <div class="tear" aria-hidden="true"></div>
 
-    <a class="link-card" href="https://controlehumana.github.io/HumWMS/" target="_blank" rel="noopener">
-      <span class="icon">📦</span>
+    <a class="row" href="https://controlehumana.github.io/HumWMS/" target="_blank" rel="noopener">
+      <span class="tag"><span class="rua">RUA W</span><span class="pos">POS 01</span></span>
       <span class="info">
         <span class="name">WMS</span>
-        <span class="desc">Gestão de armazém</span>
+        <span class="desc">Estoque e endereçamento</span>
       </span>
       <span class="arrow">→</span>
     </a>
+    <div class="tear" aria-hidden="true"></div>
 
-    <a class="link-card" href="https://controlehumana.github.io/HumWMS/coletor_endereco.html" target="_blank" rel="noopener">
-      <span class="icon">📍</span>
+    <a class="row" href="https://controlehumana.github.io/HumWMS/coletor_endereco.html" target="_blank" rel="noopener">
+      <span class="tag"><span class="rua">RUA W</span><span class="pos">POS 02</span></span>
       <span class="info">
         <span class="name">Coletor de Endereçamento</span>
-        <span class="desc">Endereçar, transferir e consultar posições</span>
+        <span class="desc">Endereçar, transferir, consultar</span>
       </span>
       <span class="arrow">→</span>
     </a>
+
+    <div class="manifest-end">
+      <span>5 posições</span>
+      <span>controlehumana</span>
+    </div>
   </nav>
 
-  <footer>controlehumana</footer>
+  <footer>atualizado 23.09.2026</footer>
 </main>
 </body>
 </html>
