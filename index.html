@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Humana Alimentar — Sistemas</title>
+<meta name="description" content="Acesso rápido aos sistemas internos da Humana Alimentar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1410;
+    --bg-glow: #12241a;
+    --surface: #16201a;
+    --surface-hover: #1c2a22;
+    --border: #263329;
+    --text: #eef3ee;
+    --muted: #92a396;
+    --accent: #3fae72;
+    --accent-soft: #1f3d2c;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    min-height: 100vh;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background:
+      radial-gradient(circle at 50% -10%, var(--bg-glow) 0%, transparent 55%),
+      var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 56px 20px 40px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .mark {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: linear-gradient(160deg, var(--accent), #276b47);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 26px;
+    color: #06150c;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
+
+  .brand p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform .16s cubic-bezier(.4,0,.2,1), background .16s, border-color .16s;
+  }
+
+  .link-card:hover {
+    background: var(--surface-hover);
+    border-color: var(--accent);
+  }
+
+  .link-card:active {
+    transform: scale(.98);
+  }
+
+  .icon {
+    flex: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .info .name {
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .info .desc {
+    color: var(--muted);
+    font-size: 12.5px;
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .arrow {
+    flex: none;
+    color: var(--muted);
+    font-size: 18px;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 12px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f3f6f3;
+      --bg-glow: #e6f0e8;
+      --surface: #ffffff;
+      --surface-hover: #f5faf6;
+      --border: #dfe7e1;
+      --text: #10231a;
+      --muted: #5f7268;
+      --accent: #2d6a4f;
+      --accent-soft: #e6f5eb;
+      --shadow: 0 1px 2px rgba(15,35,25,.06), 0 12px 32px rgba(15,35,25,.08);
+    }
+    .mark { color: #f3fff6; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">
+    <div class="mark">H</div>
+    <h1>Humana Alimentar</h1>
+    <p>Sistemas internos</p>
+  </div>
+
+  <nav class="links">
+    <a class="link-card" href="https://controlehumana.github.io/humfrete/" target="_blank" rel="noopener">
+      <span class="icon">🚚</span>
+      <span class="info">
+        <span class="name">Frete</span>
+        <span class="desc">Dashboard de fretes e CT-e</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="link-card" href="https://humana-task.vercel.app" target="_blank" rel="noopener">
+      <span class="icon">✅</span>
+      <span class="info">
+        <span class="name">Humana Task</span>
+        <span class="desc">Gestão de processos e tarefas</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="link-card" href="https://painel-tv-humana.vercel.app" target="_blank" rel="noopener">
+      <span class="icon">📺</span>
+      <span class="info">
+        <span class="name">Painel TV</span>
+        <span class="desc">Digital signage</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+
+    <a class="link-card" href="https://controlehumana.github.io/HumWMS/" target="_blank" rel="noopener">
+      <span class="icon">📦</span>
+      <span class="info">
+        <span class="name">WMS</span>
+        <span class="desc">Gestão de armazém</span>
+      </span>
+      <span class="arrow">→</span>
+    </a>
+  </nav>
+
+  <footer>controlehumana</footer>
+</main>
+</body>
+</html>
